@@ -20,22 +20,18 @@ let taxAmount;
 let finalPurchasingAmount;
 
 
-while(bank_balance > 0) {
+while(purchasingAmount < bank_balance) {
     purchasingAmount += PHONE_PRICE;
     if(purchasingAmount < SPENDING_THRESHOLD) {
         purchasingAmount += ACCESSORY_PRICE;
     }
-    taxAmount = purchasingAmount * TAX_RATE;
-    finalPurchasingAmount = purchasingAmount + taxAmount;
-    if( finalPurchasingAmount <= bank_balance ) {
-        bank_balance -= finalPurchasingAmount;
-        amount += finalPurchasingAmount;
-        purchasingAmount = 0;
-        taxAmount = 0;
-    } else {
-        break;
-    }
 }
 
-console.log(amount.toFixed(2));  
+taxAmount = purchasingAmount * TAX_RATE;
+finalPurchasingAmount = purchasingAmount + taxAmount;
+
+console.log(`$${finalPurchasingAmount.toFixed(2)}`);
+
+if( finalPurchasingAmount <  bank_balance) console.log('Can Afford');
+else console.log('Cannot afford');
 // ⛑ Answer of the above will `$334.76`.

@@ -15,4 +15,27 @@ var bank_balance = 303.91;
 var amount = 0;
 // your code goes here
 
+let purchasingAmount = 0;
+let taxAmount;
+let finalPurchasingAmount;
+
+
+while(bank_balance > 0) {
+    purchasingAmount += PHONE_PRICE;
+    if(purchasingAmount < SPENDING_THRESHOLD) {
+        purchasingAmount += ACCESSORY_PRICE;
+    }
+    taxAmount = purchasingAmount * TAX_RATE;
+    finalPurchasingAmount = purchasingAmount + taxAmount;
+    if( finalPurchasingAmount <= bank_balance ) {
+        bank_balance -= finalPurchasingAmount;
+        amount += finalPurchasingAmount;
+        purchasingAmount = 0;
+        taxAmount = 0;
+    } else {
+        break;
+    }
+}
+
+console.log(amount.toFixed(2));  
 // ⛑ Answer of the above will `$334.76`.
